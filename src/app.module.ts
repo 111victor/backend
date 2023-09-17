@@ -2,23 +2,22 @@ import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
-// import { UserModule } from './user/user.module';
 import { PropertiesModule } from "./properties/properties.module";
 import { Properties } from "./properties/entities/property.entity";
-import { CommentsController } from './comments/comments.controller';
 import { CommentsModule } from './comments/comments.module';
 import { Comments } from "./comments/entities/comment.entity";
+import { getDbConfig } from "./database/config";
 
 @Module({
   imports: [
     TypeOrmModule.forRoot({
       type: "postgres",
-      host: "localhost",
-      port: 5432,
-      password: "",
-      username: "postgres",
+      host: getDbConfig().db.host,
+      port: getDbConfig().db.port,
+      password: getDbConfig().db.password,
+      username: getDbConfig().db.username,
       entities: [Properties, Comments],
-      database: "properties",
+      database: getDbConfig().db.database,
       synchronize: true,
       logging: true,
     }),

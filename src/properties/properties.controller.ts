@@ -29,16 +29,6 @@ export class PropertiesController {
     return this.propertiesService.create(createPropertyDto);
   }
 
-  // @Get()
-  // findAll() {
-  //   return this.propertiesService.findAll();
-  // }
-
-  // @Get(':id')
-  // findOne(@Param('id') id: number) {
-  //   return this.propertiesService.findOne(id);
-  // }
-
   @Get()
   async findAllProperties(
     @Query("page") page: number,

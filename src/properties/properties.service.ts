@@ -4,6 +4,7 @@ import { UpdatePropertyDto } from "./dto/update-property.dto";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { Properties } from "./entities/property.entity";
+import { pageLimit } from "src/database/config";
 
 export type PaginationOptions = {
   page: number;
@@ -41,7 +42,7 @@ export class PropertiesService {
 
   async findAllProperties({
     page = 1,
-    limit = 10,
+    limit = pageLimit,
   }: PaginationOptions): Promise<Properties[]> {
     const skip = (page - 1) * limit;
     const properties = await this.propertiesRepository.find({

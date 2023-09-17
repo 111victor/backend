@@ -14,8 +14,12 @@ export class CommentsController {
   }
 
   @Get(':property_id')
-  async findAll(@Param('property_id') property_id: number): Promise<[Comments[], number]> {
-    return this.commentsService.findAll(property_id);
+  async findAll(@Param('property_id') property_id: number): Promise<{comments: Comments[], count: number}> {
+    const commentsInfo = await this.commentsService.findAll(property_id);
+    return {
+      comments: commentsInfo[0],
+      count: commentsInfo[1]
+    };
   }
 
   @Get(':id')
