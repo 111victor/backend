@@ -53,10 +53,10 @@ export class Properties {
   @Column({ type: "varchar" })
   identifier: string;
 
-  @Column({ type: "varchar" })
+  @Column({ type: "float8" })
   latitude: number;
 
-  @Column({ type: "varchar" })
+  @Column({ type: "float8" })
   longitude: number;
 
   @Column({ type: "varchar" })

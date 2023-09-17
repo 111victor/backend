@@ -5,6 +5,9 @@ import { AppService } from "./app.service";
 // import { UserModule } from './user/user.module';
 import { PropertiesModule } from "./properties/properties.module";
 import { Properties } from "./properties/entities/property.entity";
+import { CommentsController } from './comments/comments.controller';
+import { CommentsModule } from './comments/comments.module';
+import { Comments } from "./comments/entities/comment.entity";
 
 @Module({
   imports: [
@@ -14,13 +17,13 @@ import { Properties } from "./properties/entities/property.entity";
       port: 5432,
       password: "",
       username: "postgres",
-      entities: [Properties],
+      entities: [Properties, Comments],
       database: "properties",
       synchronize: true,
       logging: true,
     }),
     PropertiesModule,
-    // UserModule,
+    CommentsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
