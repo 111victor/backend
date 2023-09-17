@@ -54,10 +54,10 @@ export class Properties {
   identifier: string;
 
   @Column({ type: "varchar" })
-  latitude: string;
+  latitude: number;
 
   @Column({ type: "varchar" })
-  longitude: string;
+  longitude: number;
 
   @Column({ type: "varchar" })
   description: string;

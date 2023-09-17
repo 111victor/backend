@@ -18,6 +18,8 @@ export const transformPropertyDescription = (property: Properties) => {
       state: property.state,
       zip: property.zip,
     },
+    latitude: property.latitude,
+    longitude: property.longitude,
     upvote: property.upvote,
     downvote: property.downvote,
   };
