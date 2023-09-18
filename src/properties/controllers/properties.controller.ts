@@ -8,17 +8,17 @@ import {
   Delete,
   Query,
 } from "@nestjs/common";
-import { PropertiesService } from "./properties.service";
-import { CreatePropertyDto } from "./dto/create-property.dto";
-import { UpdatePropertyDto } from "./dto/update-property.dto";
+import { PropertiesService } from "../services/properties.service";
+import { CreatePropertyDto } from "../dto/create-property.dto";
+import { UpdatePropertyDto } from "../dto/update-property.dto";
 import {
   transformPropertyDescription,
   transformPropertyDetails,
-} from "./transformers/property.transformer";
+} from "../transformers/property.transformer";
 import {
   PropertyDescription,
   PropertyDetails,
-} from "./interfaces/propertyDescription";
+} from "../interfaces/propertyDescription";
 
 @Controller("properties")
 export class PropertiesController {
@@ -33,13 +33,16 @@ export class PropertiesController {
   async findAllProperties(
     @Query("page") page: number,
     @Query("limit") limit: number,
+    @Query("search") search: string,
   ): Promise<{ propertyListDescription: PropertyDescription[] }> {
     const paginated = {
       page,
       limit,
     };
-    const propertyList =
-      await this.propertiesService.findAllProperties(paginated);
+    const propertyList = await this.propertiesService.findAllProperties(
+      paginated,
+      search,
+    );
     return {
       propertyListDescription: propertyList.map((p) =>
         transformPropertyDescription(p),

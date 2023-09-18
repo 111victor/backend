@@ -1,9 +1,10 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
-import { CreateCommentDto } from './dto/create-comment.dto';
-import { UpdateCommentDto } from './dto/update-comment.dto';
-import { Comments } from './entities/comment.entity';
-import { Repository } from 'typeorm';
-import { InjectRepository } from '@nestjs/typeorm';
+import { Injectable, NotFoundException } from "@nestjs/common";
+
+import { Repository } from "typeorm";
+import { InjectRepository } from "@nestjs/typeorm";
+import { CreateCommentDto } from "../dto/create-comment.dto";
+import { UpdateCommentDto } from "../dto/update-comment.dto";
+import { Comments } from "../entities/comment.entity";
 
 @Injectable()
 export class CommentsService {
@@ -23,11 +24,11 @@ export class CommentsService {
   async findAll(property_id: number): Promise<[Comments[], number]> {
     const [comments, count] = await this.commentsRepository.findAndCount({
       where: {
-        property_id
-      }
+        property_id,
+      },
     });
-    
-    if(!comments) {
+
+    if (!comments) {
       throw new NotFoundException("Comment not found");
     }
 
@@ -42,12 +43,12 @@ export class CommentsService {
     const comment = await this.commentsRepository.findOne({
       where: {
         id,
-      }
+      },
     });
 
-    if(!comment) {
+    if (!comment) {
       throw new NotFoundException("Comment not found");
-    };
+    }
 
     comment.content = updateCommentDto.content;
     return this.commentsRepository.save(comment);

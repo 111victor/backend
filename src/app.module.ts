@@ -4,7 +4,7 @@ import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
 import { PropertiesModule } from "./properties/properties.module";
 import { Properties } from "./properties/entities/property.entity";
-import { CommentsModule } from './comments/comments.module';
+import { CommentsModule } from "./comments/comments.module";
 import { Comments } from "./comments/entities/comment.entity";
 import { getDbConfig } from "./database/config";
 

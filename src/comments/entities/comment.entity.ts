@@ -8,6 +8,6 @@ export class Comments {
   @Column({ type: "int8" })
   property_id: number;
 
-  @Column({ type: "varchar"})
+  @Column({ type: "varchar" })
   content: string;
 }
