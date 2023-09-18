@@ -47,6 +47,7 @@ export class PropertiesService {
     const skip = (page - 1) * limit;
     let properties: Properties[];
     if (search) {
+      // We can add index into our DB to improve performance.
       properties = await this.propertiesRepository
         .createQueryBuilder("property")
         .where((qb) => {
