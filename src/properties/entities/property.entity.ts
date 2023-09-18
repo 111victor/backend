@@ -62,9 +62,9 @@ export class Properties {
   @Column({ type: "varchar" })
   description: string;
 
-  @Column({ type: "int", default: true })
-  upvote: number = 0;
+  @Column({ type: "int", default: 0 })
+  upvote: number;
 
-  @Column({ type: "int", default: true })
-  downvote: number = 0;
+  @Column({ type: "int", default: 0 })
+  downvote: number;
 }
