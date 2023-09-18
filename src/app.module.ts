@@ -3,23 +3,17 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
 import { PropertiesModule } from "./properties/properties.module";
-import { Properties } from "./properties/entities/property.entity";
 import { CommentsModule } from "./comments/comments.module";
-import { Comments } from "./comments/entities/comment.entity";
-import { getDbConfig } from "./database/config";
+
+import { ConfigModule } from '@nestjs/config';
+import { TypeOrmConfigService } from "./database/config";
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
-      type: "postgres",
-      host: getDbConfig().db.host,
-      port: getDbConfig().db.port,
-      password: getDbConfig().db.password,
-      username: getDbConfig().db.username,
-      entities: [Properties, Comments],
-      database: getDbConfig().db.database,
-      synchronize: true,
-      logging: true,
+    ConfigModule.forRoot({ envFilePath: `${process.env.NODE_ENV}.env`, isGlobal: true, }),
+    TypeOrmModule.forRootAsync({
+      imports: [ConfigModule],
+      useClass: TypeOrmConfigService,
     }),
     PropertiesModule,
     CommentsModule,
