@@ -2,11 +2,11 @@ const fs = require('fs');
 const csv = require('csv-parser');
 const pgp = require('pg-promise')();
 
-const csvFilePath = '../properties.csv';
+const csvFilePath = './properties.csv';
 
 const connection = {
     host: 'host.docker.internal',
-    port: '5432',
+    port: 5432,
     database: 'properties',
     user: 'postgres',
     password: 'password'

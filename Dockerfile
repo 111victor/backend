@@ -10,4 +10,6 @@ COPY . .
 
 EXPOSE 3000
 
-CMD [ "npm", "run", "start:dev" "&&", "npm", "run", "parser"]
+CMD ["sh", "-c", "npm run start:dev && npm run parser"]
+
+
