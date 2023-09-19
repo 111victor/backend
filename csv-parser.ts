@@ -14,8 +14,6 @@ const connection = {
 
 const db = pgp(connection);
 
-
-
 fs.createReadStream(csvFilePath)
     .pipe(csv())
     .on('data', async (row) => {

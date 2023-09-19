@@ -10,6 +10,6 @@ COPY . .
 
 EXPOSE 3000
 
-CMD ["sh", "-c", "npm run start:dev && npm run parser"]
+RUN chmod +x ./start.sh
 
-
+CMD ./start.sh
